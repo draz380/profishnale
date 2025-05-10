@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>لوحة التحكم</title>
+
+    <!-- Bootstrap RTL -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Cairo Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Cairo", sans-serif;
+        background-color: #f8f9fa;
+      }
+
+      .sidebar {
+        height: 100vh;
+        background-color: #797979;
+        color: white;
+        padding-top: 20px;
+        position: sticky;
+        top: 0;
+      }
+
+      .sidebar a {
+        color: white;
+        display: block;
+        padding: 12px 20px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border-radius: 6px;
+      }
+
+      .sidebar a:hover,
+      .sidebar a.active {
+        background-color: #084298;
+      }
+
+      .content-section {
+        display: none;
+        background: white;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .content-section.active {
+        display: block;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        font-weight: 700;
+        color: #0d6efd;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+      }
+      a {
+        margin: 5px 0px;
+      }
+      a i {
+        margin: 0px 10px;
+      }
+      .mag {
+        background-color: #f8f8f8;
+        border-radius: 10px;
+        padding: 15px;
+      }
+      .mag .body {
+        max-width: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar (small screens) -->
+    <nav class="navbar navbar-light bg-white d-md-none shadow-sm px-3">
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasMenu"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <span class="navbar-brand mx-auto">لوحة التحكم</span>
+    </nav>
+
+    <!-- Offcanvas for mobile -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">القائمة</h5>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+        ></button>
+      </div>
+      <div class="offcanvas-body sidebar">
+        <a href="#" class="menu-link" data-section="home"
+          ><i class="fas fa-home ms-2"></i>الرئيسية</a
+        >
+        <a href="#" class="menu-link" data-section="about"
+          ><i class="fas fa-info-circle ms-2"></i>من نحن</a
+        >
+        <a href="#" class="menu-link" data-section="services"
+          ><i class="fas fa-concierge-bell ms-2"></i>الخدمات</a
+        >
+        <a href="#" class="menu-link" data-section="portfolio"
+          ><i class="fas fa-images ms-2"></i>معرض الأعمال</a
+        >
+        <a href="#" class="menu-link" data-section="testimonials"
+          ><i class="fas fa-images ms-2"></i>ماذا يقول عملاؤنا؟</a
+        >
+        <a href="#" class="menu-link" data-section="teamsList"
+          ><i class="fas fa-images ms-2"></i>فريق العمل</a
+        >
+        <a href="#" class="menu-link" data-section="faq"
+          ><i class="fas fa-images ms-2"></i>الأسئلة الشائعة</a
+        >
+        <a href="#" class="menu-link" data-section="contact"
+          ><i class="fas fa-envelope ms-2"></i>اتصل بنا</a
+        >
+        <a href="#" class="menu-link" data-section="settings"
+          ><i class="fas fa-envelope ms-2"></i>الاعدادات</a
+        >
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 d-none d-md-block sidebar">
+          <h3>لوحة التحكم</h3>
+          <a href="#" class="menu-link active" data-section="home"
+            ><i class="fas fa-home ms-2"></i>الرئيسية</a
+          >
+          <a href="#" class="menu-link" data-section="about"
+            ><i class="fas fa-info-circle ms-2"></i>من نحن</a
+          >
+          <a href="#" class="menu-link" data-section="services"
+            ><i class="fas fa-concierge-bell ms-2"></i>الخدمات</a
+          >
+          <a href="#" class="menu-link" data-section="portfolio"
+            ><i class="fas fa-images ms-2"></i>معرض الأعمال</a
+          >
+          <a href="#" class="menu-link" data-section="testimonials"
+            ><i class="fa-solid fa-question"></i>ماذا يقول عملاؤنا؟</a
+          >
+          <a href="#" class="menu-link" data-section="teamsList"
+            ><i class="fa-brands fa-teamspeak"></i>فريق العمل</a
+          >
+          <a href="#" class="menu-link" data-section="faq"
+            ><i class="fa-solid fa-clipboard-question"></i>الأسئلة الشائعة</a
+          >
+          <a href="#" class="menu-link" data-section="contact"
+            ><i class="fas fa-envelope ms-2"></i>اتصل بنا</a
+          >
+          <a href="#" class="menu-link" data-section="settings"
+            ><i class="fa-solid fa-screwdriver-wrench"></i>الاعدادات</a
+          >
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9 col-lg-10 p-4">
+          <div id="home" class="content-section active">
+            <h2>الرئيسية</h2>
+            <p>مرحبًا بك في لوحة التحكم الخاصة بموقع "بروفشنال".</p>
+
+            <div class="row g-4 mt-4">
+              <!-- عدد الزوار -->
+              <div class="col-md-4">
+                <div class="card text-center p-4 shadow-sm">
+                  <h5>عدد الزوار اليوم</h5>
+                  <p class="fs-3 fw-bold text-primary">1,254</p>
+                </div>
+              </div>
+
+              <!-- عدد الطلبات -->
+              <div class="col-md-4">
+                <div class="card text-center p-4 shadow-sm">
+                  <h5>الطلبات الجديدة</h5>
+                  <p class="fs-3 fw-bold text-success">12</p>
+                </div>
+              </div>
+
+              <!-- عدد الرسائل -->
+              <div class="col-md-4">
+                <div class="card text-center p-4 shadow-sm">
+                  <h5>الرسائل الواردة</h5>
+                  <p class="fs-3 fw-bold text-danger">5</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5">
+              <h4>إحصائيات سريعة</h4>
+              <ul>
+                <li>عدد المشاريع المنشورة: <strong>18</strong></li>
+                <li>عدد الشهادات: <strong>9</strong></li>
+                <li>عدد أعضاء الفريق: <strong>3</strong></li>
+              </ul>
+            </div>
+            <div class="mt-5">
+              <h4>آخر المهام</h4>
+              <ul class="list-group">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  تم إضافة مشروع جديد إلى معرض الأعمال
+                  <span class="badge bg-success rounded-pill"
+                    >قبل 10 دقائق</span
+                  >
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  تعديل قسم "من نحن"
+                  <span class="badge bg-warning text-dark rounded-pill"
+                    >قبل ساعة</span
+                  >
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  الرد على رسالة من عميل
+                  <span class="badge bg-info text-dark rounded-pill"
+                    >اليوم</span
+                  >
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  تحديث معلومات فريق العمل
+                  <span class="badge bg-secondary rounded-pill">أمس</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="about" class="content-section">
+            <h2 class="mb-4">من نحن</h2>
+
+            <form id="aboutDescription">
+              <div class="mb-3">
+                <label for="aboutDescription" class="form-label"
+                  >وصف الشركة</label
+                >
+                <textarea
+                  id="aboutDescription"
+                  class="form-control aboutDescription"
+                  rows="5"
+                  placeholder="اكتب وصفًا عن الشركة..."
+                >
+                </textarea>
+              </div>
+
+              <div class="text-end">
+                <button type="submit" class="btn btn-primary">
+                  حفظ التغييرات
+                </button>
+              </div>
+            </form>
+          </div>
+          <div id="services" class="content-section">
+            <h2 class="mb-4">الخدمات</h2>
+
+            <!-- قائمة الخدمات الحالية -->
+            <div id="servicesList">
+              
+
+              
+            </div>
+
+            <!-- زر لإضافة خدمة جديدة -->
+            <!-- زر فتح المودال -->
+            <button
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#serviceModal"
+            >
+              إضافة خدمة
+            </button>
+
+            <!-- المودال -->
+            <div
+              class="modal fade"
+              id="serviceModal"
+              tabindex="-1"
+              aria-labelledby="serviceModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="serviceModalLabel">
+                      إضافة خدمة
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="إغلاق"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <label for="serviceTitle" class="form-label"
+                        >عنوان الخدمة</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="serviceTitle"
+                        placeholder="مثلاً: تصميم مواقع"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="serviceDescription" class="form-label"
+                        >وصف الخدمة</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="serviceDescription"
+                        rows="3"
+                        placeholder="مثلاً: نصمم مواقع احترافية..."
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      إغلاق
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-success"
+                      onclick="saveService()"
+                    >
+                      حفظ
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- end -->
+          </div>
+          <div id="portfolio" class="content-section">
+            <h2 class="mb-4">معرض الأعمال</h2>
+
+            <!-- قائمة المشاريع الحالية -->
+            <div id="portfolioList" class="row g-4">
+              <div class="col-md-4">
+                <div class="card">
+                  <img
+                    src="app.png"
+                    class="card-img-top img-fluid"
+                    alt="مشروع 1"
+                  />
+                  <div class="card-body">
+                    <input
+                      type="text"
+                      class="form-control mb-2"
+                      value="تطبيق موبايل"
+                    />
+                    <button
+                      class="btn btn-danger btn-sm w-100"
+                      onclick="this.closest('.col-md-4').remove()"
+                    >
+                      حذف
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card">
+                  <img
+                    src="pro.png"
+                    class="card-img-top img-fluid"
+                    alt="مشروع 2"
+                  />
+                  <div class="card-body">
+                    <input
+                      type="text"
+                      class="form-control mb-2"
+                      value="موقع إلكتروني"
+                    />
+                    <button
+                      class="btn btn-danger btn-sm w-100"
+                      onclick="this.closest('.col-md-4').remove()"
+                    >
+                      حذف
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- رفع صورة جديدة -->
+            <div class="mt-4">
+              <h5 class="mb-2">إضافة مشروع جديد</h5>
+              <input
+                type="file"
+                id="newPortfolioImage"
+                accept="image/*"
+                class="form-control mb-2"
+              />
+              <input
+                type="text"
+                id="newPortfolioTitle"
+                class="form-control mb-2"
+                placeholder="عنوان المشروع"
+              />
+              <button class="btn btn-success" id="addPortfolio">
+                إضافة
+              </button>
+            </div>
+          </div>
+          <div id="contact" class="content-section">
+            <h2 class="mb-4">اتصل بنا</h2>
+
+            <!-- تفاصيل الاتصال -->
+            <div class="mb-4">
+              <h5>تفاصيل الاتصال</h5>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="companyEmail" class="form-label"
+                    >البريد الإلكتروني</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="companyEmail"
+                    value="contact@yourcompany.com"
+                    placeholder="example@email.com"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="companyPhone" class="form-label"
+                    >رقم الهاتف</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="companyPhone"
+                    value="+123456789"
+                    placeholder="أدخل رقم الهاتف"
+                  />
+                </div>
+
+                <button class="btn btn-success mt-3">حفظ</button>
+              </div>
+            </div>
+
+            <div>
+              <h5 class="mb-2">الرسائل المرسلة</h5>
+
+              <div class="mags">
+                <div class="mag">
+                  <h4>عبدالهادي خليل ابودراز</h4>
+                  <div class="body">
+                    <br />
+                    <p>
+                      ✅ كيفية عمل ذلك؟ الواجهة الأمامية: في البداية يتم إدخال
+                      البيانات من قبل المستخدم عبر واجهة HTML. AJAX: عند الضغط
+                      على "إرسال الرسالة"، يقوم JavaScript بإرسال البيانات عبر
+                      AJAX إلى السيرفر. PHP: على السيرفر، يتم معالجة البيانات
+                      (إرسال بريد إلكتروني) ثم العودة برسالة تأكيد للمستخدم.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="testimonials" class="content-section">
+            <h2 class="mb-4">ماذا يقول عملاؤنا؟</h2>
+
+            <div id="testimonialList">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <label class="form-label">الاسم</label>
+                  <input
+                    type="text"
+                    class="form-control mb-2"
+                    value="عميل سعيد"
+                  />
+                  <label class="form-label">التعليق</label>
+                  <textarea class="form-control mb-2">
+              خدمة ممتازة وتعامل راقٍ!</textarea
+                  >
+                  <button class="btn btn-danger btn-sm">حذف</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-end mt-3">
+              <button class="btn btn-success">إضافة تعليق</button>
+            </div>
+          </div>
+
+          <!-- team -->
+          <div id="teamsList" class="content-section">
+            <h2 class="text-start mb-4">فريق العمل</h2>
+
+            <!-- نموذج الإدخال -->
+            <div class="card p-3 mb-4 shadow-sm">
+              <div class="row gy-2">
+                <div class="col-md-3">
+                  <input
+                    type="file"
+                    id="memberImage"
+                    class="form-control"
+                    accept="image/*"
+                  />
+                </div>
+                <div class="col-md-3">
+                  <input
+                    type="text"
+                    id="memberName"
+                    class="form-control"
+                    placeholder="اسم العضو"
+                  />
+                </div>
+                <div class="col-md-3">
+                  <input
+                    type="text"
+                    id="memberRole"
+                    class="form-control"
+                    placeholder="المسمى الوظيفي"
+                  />
+                </div>
+                <div class="col-md-3">
+                  <button class="btn btn-primary w-100" onclick="addMember()">
+                    إضافة عضو
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- عرض الفريق -->
+            <div class="row gy-4" id="teamContainer">
+              <!-- عضو 1 -->
+              <div class="col-md-4">
+                <div class="card team-card shadow-sm">
+                  <img
+                    src="portrait-successful-man-having-stubble-posing-with-broad-smile-keeping-arms-folded.jpg"
+                    class="card-img-top"
+                    alt="محمد أبو سليم"
+                  />
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-1">محمد أبو سليم</h5>
+                    <p class="card-text text-muted mb-2">المدير التنفيذي</p>
+                    <button
+                      class="btn btn-outline-danger btn-sm w-100"
+                      onclick="this.closest('.col-md-4').remove()"
+                    >
+                      حذف
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- عضو 2 -->
+              <div class="col-md-4">
+                <div class="card team-card shadow-sm">
+                  <img
+                    src="portrait-confident-businessman-dressed-suit.jpg"
+                    class="card-img-top"
+                    alt="هبة حمادة"
+                  />
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-1">هبة حمادة</h5>
+                    <p class="card-text text-muted mb-2">مصممة UI/UX</p>
+                    <button
+                      class="btn btn-outline-danger btn-sm w-100"
+                      onclick="this.closest('.col-md-4').remove()"
+                    >
+                      حذف
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- عضو 3 -->
+              <div class="col-md-4">
+                <div class="card team-card shadow-sm">
+                  <img
+                    src="cheerful-indian-businessman-smiling-closeup-portrait-jobs-career-campaign.jpg"
+                    class="card-img-top"
+                    alt="أحمد بركات"
+                  />
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-1">أحمد بركات</h5>
+                    <p class="card-text text-muted mb-2">مطور واجهات أمامية</p>
+                    <button
+                      class="btn btn-outline-danger btn-sm w-100"
+                      onclick="this.closest('.col-md-4').remove()"
+                    >
+                      حذف
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end team -->
+          <div id="faq" class="content-section">
+            <h2 class="mb-4">الأسئلة الشائعة</h2>
+
+            <div id="faqList">
+              <!-- مثال لسؤال موجود -->
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="mb-2">
+                    <label class="form-label">السؤال</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      value="ما هي خدماتكم؟"
+                    />
+                  </div>
+                  <div class="mb-2">
+                    <label class="form-label">الإجابة</label>
+                    <textarea class="form-control" rows="3">
+          نحن نقدم خدمات تصميم المواقع، التسويق الرقمي، وتطوير الأنظمة.</textarea
+                    >
+                  </div>
+                  <button class="btn btn-danger btn-sm">حذف</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- إضافة سؤال جديد -->
+            <div class="text-end mt-3">
+              <button class="btn btn-success">إضافة سؤال جديد</button>
+              <button class="btn btn-primary">حفظ التعديلات</button>
+            </div>
+          </div>
+
+          <!-- endqu -->
+          <div id="settings" class="card my-4 content-section">
+            <div class="card-header bg-secondary text-white">
+              <h5 class="mb-0">الإعدادات - إظهار أو إخفاء أقسام الموقع</h5>
+            </div>
+            <div class="card-body">
+              <table class="table table-bordered text-center align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>#</th>
+                    <th>اسم القسم</th>
+                    <th>الحالة</th>
+                    <th>التحكم</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>الرئيسية</td>
+                    <td><span class="badge bg-success">ظاهر</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-danger">
+                        إخفاء
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>من نحن</td>
+                    <td><span class="badge bg-success">ظاهر</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-danger">
+                        إخفاء
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>الخدمات</td>
+                    <td><span class="badge bg-success">ظاهر</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-danger">
+                        إخفاء
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>معرض الأعمال</td>
+                    <td><span class="badge bg-success">ظاهر</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-danger">
+                        إخفاء
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>الأسئلة الشائعة</td>
+                    <td><span class="badge bg-danger">مخفي</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-success">
+                        إظهار
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>العملاء</td>
+                    <td><span class="badge bg-success">ظاهر</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-danger">
+                        إخفاء
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>آراء العملاء</td>
+                    <td><span class="badge bg-danger">مخفي</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-success">
+                        إظهار
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>تواصل معنا</td>
+                    <td><span class="badge bg-success">ظاهر</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-danger">
+                        إخفاء
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <form id="siteSettingsForm">
+              <hr class="my-4" />
+
+              <h4 class="mb-3">الإعدادات العامة</h4>
+              <form id="generalSettingsForm" class="mb-4">
+                <div class="mb-3">
+                  <label for="siteNameGeneral" class="form-label"
+                    >اسم الموقع</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="siteNameGeneral"
+                    value="بروفشنال"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="siteLogo" class="form-label">شعار الموقع</label>
+                  <input type="file" class="form-control" id="siteLogo" />
+                </div>
+                <div class="mb-3">
+                  <label for="siteDescription" class="form-label"
+                    >وصف الموقع</label
+                  >
+                  <textarea class="form-control" id="siteDescription" rows="3">
+                  نقدم خدمات رقمية احترافية...</textarea
+                  >
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                  حفظ الإعدادات العامة
+                </button>
+              </form>
+
+              <hr class="my-4" />
+            </form>
+            <h4 class="mt-2 mb-2">إدارة المدراء</h4>
+
+            <!-- نموذج إضافة أدمن -->
+            <form id="addAdminForm" class="mb-4">
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="adminEmail"
+                    placeholder="البريد الإلكتروني"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="adminPassword"
+                    placeholder="كلمة المرور"
+                    required
+                  />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success mt-3">
+                إضافة الأدمن
+              </button>
+            </form>
+
+            <!-- جدول عرض الأدمن -->
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                  <tr>
+                    <th>#</th>
+                    <th>البريد</th>
+                    <th>إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="adminTableBody">
+                  <!-- سيتم إضافة الصفوف ديناميكياً -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- end -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Toggle Sections -->
+    <script type="module" src="app.js"></script>
+    <script>
+      const links = document.querySelectorAll(".menu-link");
+      const sections = document.querySelectorAll(".content-section");
+
+      links.forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          links.forEach((l) => l.classList.remove("active"));
+          sections.forEach((section) => section.classList.remove("active"));
+          this.classList.add("active");
+          const target = this.getAttribute("data-section");
+          document.getElementById(target).classList.add("active");
+
+          const offcanvas = bootstrap.Offcanvas.getInstance(
+            document.getElementById("offcanvasMenu")
+          );
+          if (offcanvas) offcanvas.hide();
+        });
+      });
+    </script>
+  </body>
+</html>
